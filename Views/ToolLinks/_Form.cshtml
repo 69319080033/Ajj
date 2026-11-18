@@ -1,0 +1,35 @@
+@model ToolLinkInputModel
+<div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+<div class="form-field">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" autocomplete="off" autofocus />
+    <span asp-validation-for="Name"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Url"></label>
+    <input asp-for="Url" type="url" inputmode="url" placeholder="https://example.com" data-web-url />
+    <small>ต้องเป็น URL แบบเต็ม เช่น https://example.com — ระบบตรวจเฉพาะรูปแบบและไม่เปิดเว็บไซต์เพื่อตรวจสอบ</small>
+    <span asp-validation-for="Url"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Category"></label>
+    <input asp-for="Category" list="category-options" placeholder="เช่น ออกแบบ, เอกสาร, ติดตามงาน" />
+    <datalist id="category-options">
+        <option value="ออกแบบ"></option>
+        <option value="เอกสาร"></option>
+        <option value="ติดตามงาน"></option>
+    </datalist>
+    <span asp-validation-for="Category"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description" rows="4" placeholder="เครื่องมือนี้ใช้ทำอะไร และเหมาะกับใคร"></textarea>
+    <span asp-validation-for="Description"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Status"></label>
+    <select asp-for="Status">
+        <option value="Active">ใช้งานอยู่</option>
+        <option value="Inactive">ไม่ใช้งาน</option>
+    </select>
+</div>

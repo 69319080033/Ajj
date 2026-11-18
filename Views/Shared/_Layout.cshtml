@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Team Link Hub</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" asp-controller="ToolLinks" asp-action="Index"><span>↗</span> Team Link Hub</a>
+        <a class="button button-light" asp-controller="ToolLinks" asp-action="Create">+ เพิ่มเครื่องมือ</a>
+    </header>
+    <main class="page-wrap">
+        @if (TempData["Success"] is string message)
+        {
+            <div class="alert-success" role="status">@message</div>
+        }
+        @RenderBody()
+    </main>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

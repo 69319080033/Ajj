@@ -1,0 +1,16 @@
+@model ToolLinkInputModel
+@{
+    ViewData["Title"] = "เพิ่มเครื่องมือ";
+}
+<section class="form-page">
+    <a class="back-link" asp-action="Index">← กลับไปคลังลิงก์</a>
+    <h1>เพิ่มเครื่องมือใหม่</h1>
+    <p>บันทึกลิงก์เพื่อให้ทุกคนในทีมเข้าถึงได้ง่ายขึ้น</p>
+    <form method="post" class="tool-form">
+        <partial name="_Form" model="Model" />
+        <div class="form-actions">
+            <a class="button button-outline" asp-action="Index">ยกเลิก</a>
+            <button class="button" type="submit">บันทึกเครื่องมือ</button>
+        </div>
+    </form>
+</section>

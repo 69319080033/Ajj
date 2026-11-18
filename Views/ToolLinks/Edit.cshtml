@@ -1,0 +1,16 @@
+@model ToolLinkInputModel
+@{
+    ViewData["Title"] = "แก้ไขเครื่องมือ";
+}
+<section class="form-page">
+    <a class="back-link" asp-action="Index">← กลับไปคลังลิงก์</a>
+    <h1>แก้ไขเครื่องมือ</h1>
+    <p>อัปเดตข้อมูลให้ทีมใช้แหล่งข้อมูลล่าสุดเสมอ</p>
+    <form method="post" class="tool-form">
+        <partial name="_Form" model="Model" />
+        <div class="form-actions">
+            <a class="button button-outline" asp-action="Index">ยกเลิก</a>
+            <button class="button" type="submit">บันทึกการแก้ไข</button>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,66 @@
+@model ToolLinkIndexViewModel
+@{
+    ViewData["Title"] = "คลังลิงก์ของทีม";
+}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">TEAM KNOWLEDGE BASE</p>
+        <h1>คลังลิงก์ของทีม</h1>
+        <p>รวมเครื่องมือ คู่มือ และระบบติดตามงานไว้ในที่เดียว</p>
+    </div>
+    <a class="button" asp-action="Create">+ เพิ่มเครื่องมือ</a>
+</section>
+
+<form class="filters" method="get">
+    <label>
+        <span class="sr-only">ค้นหา</span>
+        <input name="search" value="@Model.Search" placeholder="ค้นหาชื่อ คำอธิบาย หรือ URL" />
+    </label>
+    <select name="category" aria-label="หมวดหมู่">
+        <option value="">ทุกหมวดหมู่</option>
+        @foreach (var item in Model.Categories)
+        {
+            <option value="@item" selected="@(Model.Category == item)">@item</option>
+        }
+    </select>
+    <select name="status" aria-label="สถานะใช้งาน">
+        <option value="">ทุกสถานะ</option>
+        <option value="Active" selected="@(Model.Status == ToolStatus.Active)">ใช้งานอยู่</option>
+        <option value="Inactive" selected="@(Model.Status == ToolStatus.Inactive)">ไม่ใช้งาน</option>
+    </select>
+    <button class="button" type="submit">ค้นหา</button>
+    <a class="link-muted" asp-action="Index">ล้างตัวกรอง</a>
+</form>
+
+<p class="result-count">พบ @Model.Items.Count รายการ</p>
+
+@if (Model.Items.Count == 0)
+{
+    <section class="empty-state">
+        <h2>ยังไม่พบรายการ</h2>
+        <p>ลองเปลี่ยนคำค้นหา หรือลงทะเบียนเครื่องมือรายการแรกของทีม</p>
+        <a class="button" asp-action="Create">เพิ่มเครื่องมือ</a>
+    </section>
+}
+else
+{
+    <section class="tool-grid" aria-label="รายการเครื่องมือ">
+        @foreach (var item in Model.Items)
+        {
+            <article class="tool-card">
+                <div class="card-top">
+                    <span class="category">@item.Category</span>
+                    <span class="status @(item.Status == ToolStatus.Active ? "active" : "inactive")">@(item.Status == ToolStatus.Active ? "ใช้งานอยู่" : "ไม่ใช้งาน")</span>
+                </div>
+                <h2>@item.Name</h2>
+                <p>@item.Description</p>
+                <a class="url" href="@item.Url" target="_blank" rel="noopener noreferrer">@item.Url <span aria-hidden="true">↗</span></a>
+                <div class="card-actions">
+                    <a asp-action="Edit" asp-route-id="@item.Id">แก้ไข</a>
+                    <a class="danger" asp-action="Delete" asp-route-id="@item.Id">ลบ</a>
+                </div>
+            </article>
+        }
+    </section>
+}

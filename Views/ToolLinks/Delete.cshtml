@@ -1,0 +1,17 @@
+@model ToolLink
+@{
+    ViewData["Title"] = "ลบเครื่องมือ";
+}
+<section class="form-page danger-page">
+    <a class="back-link" asp-action="Index">← กลับไปคลังลิงก์</a>
+    <h1>ลบ “@Model.Name” ใช่หรือไม่?</h1>
+    <p>รายการนี้จะถูกลบออกจากคลังลิงก์ของทีม</p>
+    <div class="delete-details">
+        <strong>@Model.Name</strong>
+        <span>@Model.Url</span>
+    </div>
+    <form method="post" class="form-actions">
+        <a class="button button-outline" asp-action="Index">ยกเลิก</a>
+        <button class="button button-danger" type="submit">ลบเครื่องมือ</button>
+    </form>
+</section>
